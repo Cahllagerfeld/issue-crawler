@@ -1,2 +1,2 @@
 # Ignoring CHANGELOG.md because it will get overwritten by the next release. We can commit it, but the changes won't be durable.
-CHANGELOG.md
+/CHANGELOG.md
