@@ -13,6 +13,7 @@
   import Filter from '$lib/components/filter.svelte';
   import Search from '$lib/components/search.svelte';
   import Modal from '$lib/components/modal.svelte';
+  import { para } from './getparam';
   export let data: PageData;
 
   let { checked } = data;
@@ -21,7 +22,8 @@
 
   if (!checked) checked = false;
 
-  let selectedLabels: string[] = [];
+  let selectedLabels: string[] = para();
+  let misss = false;
 
   $: issues = createInfiniteQuery({
     queryKey: ['issues', { global: checked }],
@@ -39,14 +41,30 @@
   const onChangeHandler = async () => {
     if (checked) {
       await goto('?global=true', { noScroll: true });
+      selectedLabels = [];
       return;
     }
     await goto('?global=false', { noScroll: true });
+    selectedLabels = [];
   };
 
   const onFilterClear = () => {
     selectedLabels = [];
   };
+
+  $: {
+    if (typeof window !== 'undefined' && misss) {
+      const labelsParam = selectedLabels.length > 0 ? selectedLabels.join(',') : '';
+      const currentQuery = new URLSearchParams(window.location.search);
+      if (labelsParam) {
+        currentQuery.set('filter', labelsParam);
+      } else {
+        currentQuery.delete('filter');
+      }
+      history.replaceState(null, '', `?${currentQuery.toString()}`);
+    }
+    misss = true;
+  }
 
   $: filteredResponse = $issues.data?.pages?.flatMap((page) => {
     return page.edges
