@@ -29,7 +29,7 @@
 
 <style lang="postcss">
   .card:hover::before {
-    @apply absolute -z-10 h-[500px] w-[100px] bg-[#000000];
+    @apply absolute -z-10 h-[500px] w-[100px] bg-white;
     content: '';
     animation: animate-circle 5s linear infinite;
   }
