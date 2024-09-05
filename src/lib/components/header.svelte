@@ -1,6 +1,7 @@
 <script lang="ts">
   import ProfilePicture from './profile-picture.svelte';
   import { page } from '$app/stores';
+  import ThemeSwitcher from './theme-switcher.svelte';
 
   import showHamburgerMenu from '$lib/stores/show-hamburger-menu';
   import HamburgerMenu from './hamburger-menu/menu.svelte';
@@ -35,6 +36,7 @@
       aria-label="hubber"
     />
   </a>
+  <ThemeSwitcher />
   <div class="lg:hidden">
     <button
       on:click={() => ($showHamburgerMenu = true)}

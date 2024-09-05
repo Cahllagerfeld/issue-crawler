@@ -1,11 +1,9 @@
 <script lang="ts">
-  import ThemeSwitcher from './theme-switcher.svelte';
   import PackageVersion from './package-version.svelte';
 </script>
 
 <footer class="mt-auto w-full bg-skin-off-background py-4">
   <div class="mx-auto flex w-[90%] max-w-[1440px] items-center justify-between">
-    <ThemeSwitcher />
     <PackageVersion />
 
     <ul class="flex list-none items-center justify-center gap-8">
